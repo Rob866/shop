@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block  content %}
+  <form method="post" novalidate>
+    {% csrf_token %}
+    <div class="form-group">
+      {{ form.nombre.label_tag}}
+       <input
+          class ='form-control {% if form.nombre.errors %} is-invalid {% endif %}'
+          type="text"
+          name="nombre"
+         id='id_nombre'
+          value="{{ form.nombre.value|default:''}}">
+        {% if form.nombre.errors %}
+        <div class="invalid-feedback">
+                {{ form.nombre.errors}}
+        </div>
+        {%endif%}
+
+    </div>
+    <div class="form-group">
+      {{ form.direccion1.label_tag}}
+       <input
+          class ='form-control {% if form.direccion1.errors %} is-invalid {% endif %}'
+          type="text"
+          name="direccion1"
+         id='id_direccion1'
+          value="{{ form.direccion1.value|default:''}}">
+
+    </div>
+    {% if form.direccion1.errors %}
+        <div class="invalid-feedback">
+          {{ form.direccion1.errors}}
+        </div>
+    {%endif%}
+    <div class="form-group">
+      {{ form.direccion2.label_tag}}
+       <input
+          class ='form-control {% if form.direccion2.errors %} is-invalid {% endif %}'
+          type="text"
+          name="direccion2"
+         id='id_direccion2'
+          value="{{ form.direccion2.value|default:''}}">
+
+    </div>
+    <div class="form-group">
+      {{ form.codigo_postal.label_tag}}
+       <input
+          class ='form-control {% if form.codigo_postal.errors %} is-invalid {% endif %}'
+          type="text"
+          name="codigo_postal"
+         id='id_codigo_postal'
+          value="{{ form.codigo_postal.value|default:''}}">
+          {% if form.codigo_postal.errors %}
+              <div class="invalid-feedback">
+                {{ form.codigo_postal.errors}}
+              </div>
+          {%endif%}
+    </div>
+
+    <div class="form-group">
+      {{ form.ciudad.label_tag}}
+       <input
+          class ='form-control {% if form.ciudad.errors %} is-invalid {% endif %}'
+          type="text"
+          name="ciudad"
+         id='id_ciudad'
+          value="{{ form.ciudad.value|default:''}}">
+      {% if form.ciudad.errors %}
+      <div class="invalid-feedback">
+        {{ form.ciudad.errors}}
+      </div>
+      {%endif%}
+    </div>
+      {{ form.pais.label_tag}}
+      {{ form.pais}}
+    <button type="submit" class="btn btn-primary mt-3">Crear Direccion</button>
+  </form>
+
+
+
+{% endblock %}

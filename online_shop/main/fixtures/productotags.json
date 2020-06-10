@@ -1,0 +1,29 @@
+[
+{
+  "model": "main.productotag",
+  "fields": {
+    "nombre": "Terror",
+    "slug": "terror",
+    "descripcion": "Libros  espeluzanantes a la orden!",
+    "activo": true
+  }
+},
+{
+  "model": "main.productotag",
+  "fields": {
+    "nombre": "Suspenso",
+    "slug": "suspenso",
+    "descripcion": "Boomm!!",
+    "activo": true
+  }
+},
+{
+  "model": "main.productotag",
+  "fields": {
+    "nombre": "Ciencia Ficci\u00f3n",
+    "slug": "ciencia-ficcion",
+    "descripcion": "Uno de los generos  que a revolucionado la historia",
+    "activo": true
+  }
+}
+]

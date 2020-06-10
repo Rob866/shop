@@ -1,0 +1,18 @@
+[
+{
+  "model": "main.producto",
+  "pk": 9,
+  "fields": {
+    "nombre": "Encuentros en la oscuridad",
+    "descripcion": "Algunas pel\u00edculas de terror son buenas, otras malas, y algunas simplemente perfectas. Desde historias sobre cultos sat\u00e1nicos hasta pel\u00edculas sobre padres pose\u00eddos, estas pel\u00edculas de terror son pr\u00e1cticamente impecables",
+    "precio": "24.00",
+    "slug": "encuentros-en-la-oscuridad",
+    "activo": true,
+    "en_stock": true,
+    "actualizacion": "2020-05-27T06:18:28.763Z",
+    "tags": [
+      5
+    ]
+  }
+}
+]

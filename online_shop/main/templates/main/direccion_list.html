@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+
+
+{% block  content %}
+<h4> Lista de  tus direcciones</h4>
+<p>
+  <span class="badge badge-primary badge-pill">
+      <a  style="color: white; font-size: 15px;"href="{% url 'main:direccion_create' %}">Agregar Dirección</a>
+  </span>
+</p>
+{% for direccion in  direcciones %}
+<ul class="list-group pb-4">
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    {{ direccion.nombre}}
+
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    {{ direccion.direccion1}}
+
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    {{ direccion.direccion2}}
+
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    {{ direccion.ciudad}}
+  </li>
+  {% if direccion.pais == 'mx' %}
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    México
+  </li>
+  {% elif direccion.pais == 'eu' %}
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+   EUA
+  </li>
+  {%else%}
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+   no select
+  </li>
+  {% endif %}
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <span class="badge badge-primary badge-pill">
+      <a  style="color: white; font-size: 15px;"href="{% url 'main:direccion_update' pk=direccion.id %}">Update</a>
+
+    </span>
+    <span class="badge badge-primary badge-pill">
+      <a  style="color:white; font-size: 15px;"href="{% url 'main:confirm_delete' pk=direccion.id %}">Delete</a>
+    </span>
+  </li>
+
+
+
+
+</ul>
+{% endfor %}
+
+{% endblock %}

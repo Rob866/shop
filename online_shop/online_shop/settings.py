@@ -80,7 +80,9 @@ TEMPLATES = [
     },
 ]
 
+AUTH_USER_MODEL = "main.Usuario"
 WSGI_APPLICATION = 'online_shop.wsgi.application'
+
 
 
 # Database
@@ -116,9 +118,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-mx'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Etc/GMT+7'
+
 
 USE_I18N = True
 
