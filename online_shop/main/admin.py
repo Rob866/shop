@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Producto,ProductoTag,ProductoImagen,Direccion
+from .models import Producto,ProductoTag,ProductoImagen,Direccion,Basket,BasketLine
 from django.utils.html import format_html
 from main import models
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
@@ -99,7 +99,14 @@ class UserAdmin(DjangoUserAdmin):
 class DireccionAdmin(admin.ModelAdmin):
     list_display = ('nombre',)
 
+class BasketAdmin(admin.ModelAdmin):
+    list_display = ('status',)
+
+
+
 admin.site.register(Producto ,ProductoAdmin)
 admin.site.register(ProductoImagen,ProductoImagenAdmin)
 admin.site.register(ProductoTag,ProductoTagAdmin)
 admin.site.register(Direccion,DireccionAdmin)
+admin.site.register(Basket,BasketAdmin)
+admin.site.register(BasketLine)

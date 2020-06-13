@@ -6,6 +6,8 @@ from django.contrib.auth.models import (
     PermissionsMixin
 )
 
+from django.core.validators import MinValueValidator
+
 class ProductoTagManager(models.Manager):
     def get_by_natural_key(self, slug):
         return self.get(slug=slug)
@@ -143,3 +145,24 @@ class Direccion(models.Model):
               self.ciudad,
               self.pais,
           ])
+
+
+class Basket(models.Model):
+    OPEN = 10
+    SUBMITTED = 20
+    STATUSES = ((OPEN, 'Open'),(SUBMITTED,'Submitted'))
+    usuario = models.ForeignKey(Usuario,on_delete= models.CASCADE, related_name="baskets",blank=True,null=True)
+    status =  models.IntegerField(choices=STATUSES, default=OPEN)
+
+    def  is_empty(self):
+        return self.baskets_lines.all().count() == 0
+
+    def count(self):
+        return sum(basket_line.cantidad for basket_line in self.baskets_lines.all())
+
+
+
+class BasketLine(models.Model):
+    basket = models.ForeignKey(Basket,on_delete=models.CASCADE,related_name ="baskets_lines")
+    producto = models.ForeignKey(Producto,on_delete=models.CASCADE,related_name="productos")
+    cantidad = models.PositiveIntegerField(default=1,validators=[MinValueValidator(1)])

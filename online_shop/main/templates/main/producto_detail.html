@@ -82,7 +82,9 @@
 {% endblock%}
 {% block content %}
 <div style="position: relative; width: 100%; height: 50px;padding-top:20px;">
-   <button  style="position:absolute; right:0;" type="button" class="btn btn-secondary">Añadir a Canasta</button>
+   <button  style="position:absolute; right:0;" type="button" class="btn btn-secondary">
+     <a href="{% url 'main:add_to_basket' %}?producto_id={{ object.id }}">Añadir a Canasta</a>
+   </button>
 </div>
 
   <h1 style="padding-top:20px;">Producto</h1>
@@ -117,11 +119,11 @@
 <div class="gallery-section">
     <div class="inner-width">
       <div class="gallery">
-      {% for imagen in object.imagenes.all %}
-        <a href="{{ imagen.imagen.url }}" class="image">
-          <img src="{{ imagen.thumbnail.url }}" alt="">
-        </a>
-      {% endfor%}
+        {% for imagen in object.imagenes.all %}
+          <a href="{{ imagen.imagen.url }}" class="image">
+            <img src="{{ imagen.thumbnail.url }}" alt="">
+          </a>
+        {% endfor%}
       </div>
     </div>
   </div>

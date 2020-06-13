@@ -48,8 +48,7 @@ class LoginAutentificationForm(forms.Form):
             self.user = authenticate(email=email,password=password)
         if self.user is None:
             raise forms.ValidationError('error de autentificación')
-        logger.info(
-                "Autentificación éxitosa=%s",email)
+        logger.info("Autentificación éxitosa=%s",email)
         return self.cleaned_data
     def get_user(self):
         return self.user

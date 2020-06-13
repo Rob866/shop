@@ -19,5 +19,7 @@ urlpatterns = [
     path('direccion/',views.DireccionListView.as_view(),name='direcciones_list'),
     path('direccion/<int:pk>/',views.DireccionUptadeView.as_view(),name='direccion_update'),
     path('direccion/<int:pk>/delelete/',views.DeleteDireccion.as_view(),name='confirm_delete'),
-    path('direccion/create/',views.DireccionCreateView.as_view(),name='direccion_create')
+    path('direccion/create/',views.DireccionCreateView.as_view(),name='direccion_create'),
+    path('add_to_basket/',views.add_to_basket,name='add_to_basket')
+
 ]

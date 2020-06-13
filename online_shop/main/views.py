@@ -152,3 +152,21 @@ class DireccionCreateView(LoginRequiredMixin,CreateView):
         obj.save()
         messages.success(self.request,"nueva Dirección creada")
         return super().form_valid(form)
+
+
+def add_to_basket(request):
+    producto = get_object_or_404(models.Producto,pk=request.GET.get('producto_id'))
+    basket =  request.basket
+    if not  basket:
+        if request.user.is_authenticated:
+            usuario = request.user
+        else:
+            usuario = None
+        basket = models.Basket.objects.create(usuario=usuario)
+        request.session['basket_id'] = basket.id
+    basket_line ,created = models.BasketLine.objects.get_or_create(basket=basket,producto=producto)
+
+    if not created:
+        basket_line.cantidad +=1
+        basket_line.save()
+    return HttpResponseRedirect(reverse('main:producto',args=(producto.slug,)))
