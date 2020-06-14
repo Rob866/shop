@@ -3,7 +3,7 @@ from django.views.generic.edit import (FormView,CreateView,UpdateView,DeleteView
 
 from django.shortcuts import render,get_object_or_404,redirect
 from main import models
-from main.forms import (ContactForm,SignUpForm,LoginAutentificationForm,UpdateViewForm)
+from main.forms import (ContactForm,SignUpForm,LoginAutentificationForm,UpdateViewForm,BasketLineFormSet)
 import logging
 from django.contrib.auth import login, authenticate,logout
 from django.contrib import messages
@@ -170,3 +170,18 @@ def add_to_basket(request):
         basket_line.cantidad +=1
         basket_line.save()
     return HttpResponseRedirect(reverse('main:producto',args=(producto.slug,)))
+
+
+def  manage_basket(request):
+    if not request.basket:
+        return render(request,'main/basket.html',{ 'formset': None})
+    if request.method == 'POST':
+        formset = BasketLineFormSet(request.POST,instance=request.basket)
+        if formset.is_valid():
+            formset.save()
+    else:
+        formset = BasketLineFormSet(instance=request.basket)
+    if request.basket.is_empty():
+        return render(request,'main/basket.html',{ 'formset': None})
+
+    return render(request,'main/basket.html',{ 'formset': formset})

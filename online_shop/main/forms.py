@@ -2,12 +2,11 @@ from django import forms
 from django.core.mail  import  send_mail
 import logging
 from django.contrib.auth.forms import (UserCreationForm,UsernameField)
-
 from django.contrib.auth import (get_user_model, authenticate)
-
 from . import models
-
 logger = logging.getLogger(__name__)
+from  django.forms import inlineformset_factory
+
 
 class ContactForm(forms.Form):
     nombre = forms.CharField(label='Nombre',max_length=100)
@@ -86,3 +85,10 @@ class UpdateViewForm(forms.ModelForm):
     class Meta:
         model = models.Direccion
         fields=('nombre','direccion1', 'direccion2','codigo_postal','ciudad','pais')
+
+
+BasketLineFormSet = inlineformset_factory(
+        models.Basket,
+        models.BasketLine,
+        fields = ('cantidad',),
+        extra=0,)
